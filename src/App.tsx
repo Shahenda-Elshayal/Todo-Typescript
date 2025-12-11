@@ -13,6 +13,7 @@ export interface GoalType {
 function App() {
   const [goal, setGoal] = useState<GoalType[]>([]);
 
+  // Add Handler Button
   const handleAddGoal = () => {
     let newValue: GoalType = {
       title: "Learn React + TS",
@@ -20,6 +21,11 @@ function App() {
       id: Math.random(),
     };
     setGoal([...goal, newValue]);
+  };
+
+  // Delete Handler Button
+  const handleDeleteGoal = (id: number) => {
+    setGoal(goal.filter((goal) => goal.id !== id));
   };
 
   return (
@@ -32,7 +38,7 @@ function App() {
         Add Goal
       </button>
 
-     <CourseGoalList goal={goal}/>
+      <CourseGoalList goal={goal} handleDeleteGoal={handleDeleteGoal} />
     </div>
   );
 }
